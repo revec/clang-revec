@@ -1644,6 +1644,11 @@ def fslp_vectorize : Flag<["-"], "fslp-vectorize">, Group<f_Group>,
 def fno_slp_vectorize : Flag<["-"], "fno-slp-vectorize">, Group<f_Group>;
 def : Flag<["-"], "ftree-slp-vectorize">, Alias<fslp_vectorize>;
 def : Flag<["-"], "fno-tree-slp-vectorize">, Alias<fno_slp_vectorize>;
+def frevectorize : Flag<["-"], "frevectorize">, Group<f_Group>,
+  HelpText<"Enable vector intrinsic widening passes">;
+def fno_revectorize : Flag<["-"], "fno-revectorize">, Group<f_Group>;
+def : Flag<["-"], "ftree-revectorize">, Alias<frevectorize>;
+def : Flag<["-"], "fno-tree-revectorize">, Alias<fno_revectorize>;
 def Wlarge_by_value_copy_def : Flag<["-"], "Wlarge-by-value-copy">,
   HelpText<"Warn if a function definition returns or accepts an object larger "
            "in bytes than a given value">, Flags<[HelpHidden]>;

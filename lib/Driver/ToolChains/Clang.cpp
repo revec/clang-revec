@@ -7,6 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include <iostream>
+
 #include "Clang.h"
 #include "Arch/AArch64.h"
 #include "Arch/ARM.h"
@@ -4511,6 +4513,15 @@ void Clang::ConstructJob(Compilation &C, const JobAction &JA,
   if (Args.hasFlag(options::OPT_fslp_vectorize, SLPVectAliasOption,
                    options::OPT_fno_slp_vectorize, EnableSLPVec))
     CmdArgs.push_back("-vectorize-slp");
+
+  bool EnableRevec = shouldEnableVectorizerAtOLevel(Args, true);
+  OptSpecifier RevectAliasOption =
+      EnableRevec ? options::OPT_O_Group : options::OPT_frevectorize;
+  if (Args.hasFlag(options::OPT_frevectorize, RevectAliasOption,
+                   options::OPT_fno_revectorize, EnableRevec)) {
+    CmdArgs.push_back("-vectorize-revec");
+    std::cout << "Clang: adding argument -vectorize-revec" << std::endl;
+  }
 
   ParseMPreferVectorWidth(D, Args, CmdArgs);
 
