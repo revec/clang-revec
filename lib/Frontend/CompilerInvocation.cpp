@@ -7,8 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
-
 #include "clang/Frontend/CompilerInvocation.h"
 #include "TestModuleFileExtension.h"
 #include "clang/Basic/Builtins.h"
@@ -783,9 +781,6 @@ static bool ParseCodeGenArgs(CodeGenOptions &Opts, ArgList &Args, InputKind IK,
   Opts.VectorizeLoop = Args.hasArg(OPT_vectorize_loops);
   Opts.VectorizeSLP = Args.hasArg(OPT_vectorize_slp);
   Opts.Revectorize = Args.hasArg(OPT_vectorize_revec);
-  std::cout << "CompilerInvocation: Opts.VectorizeLoop = " << Opts.VectorizeLoop << std::endl;
-  std::cout << "CompilerInvocation: Opts.VectorizeSLP = " << Opts.VectorizeSLP << std::endl;
-  std::cout << "CompilerInvocation: Opts.Revectorize = " << Opts.Revectorize << std::endl;
 
   Opts.PreferVectorWidth = Args.getLastArgValue(OPT_mprefer_vector_width_EQ);
 
